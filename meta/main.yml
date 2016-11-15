@@ -20,9 +20,6 @@ galaxy_info:
   #  - stretch
   #  - wheezy
 
-  categories:
-  - development
-
   galaxy_tags:
     - tinyos
     - nesc
