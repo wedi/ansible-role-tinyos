@@ -1,6 +1,6 @@
-Ansible TinyOS Role
-===================
-![Travis CI Build Status](https://travis-ci.org/wedi/ansible-role-tinyos.svg?branch=master "Travis CI Build Status")
+TinyOS Role for Ansible
+=======================
+[![Build Status](https://travis-ci.org/wedi/ansible-role-tinyos.svg?branch=master)](https://travis-ci.org/wedi/ansible-role-tinyos)
 
 This Ansible role installs [TinyOS](https://github.com/tinyos/tinyos-main/), [nesC](https://github.com/tinyos/nesc) and all requirements to compile and install a firmware on sensor nodes. Right now only the MSP430 microcontroller toolchain (e.g. used on the TelosB sensor module) is included as I'm currently using only that one. Open an issue if you need any others.
 
