@@ -1,0 +1,8 @@
+---
+
+# where to clone the source code to
+src_target: '/usr/local/src'
+tinyos_src_dir: '{{ src_target }}/tinyos'
+nesc_src_dir: '{{ src_target }}/nesc'
+
+...

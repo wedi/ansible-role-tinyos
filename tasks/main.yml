@@ -1,0 +1,13 @@
+---
+
+- name: Add remote user to dialout group to allow access to serial ports
+  user:
+    name: "{{ansible_user}}"
+    append: yes
+    groups: dialout
+    state: present
+
+- include: nesc.yml
+- include: tinyos.yml
+
+...

@@ -1,0 +1,42 @@
+---
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Setup nesC
+
+- name: install nesC requirements
+  apt: >
+    pkg={{ item }} state=present
+    update_cache=yes cache_valid_time=1800
+  with_items: [automake, autoconf, emacs, gperf, bison, flex, default-jdk]
+
+- name: Checkout nesC repo from GitHub
+  git:
+    repo: 'https://github.com/tinyos/nesc.git'
+    dest: '{{ nesc_src_dir }}'
+    depth: 1
+
+- name: Bootstrap nesC
+  command: './Bootstrap'
+  args:
+    chdir: '{{ nesc_src_dir }}'
+    creates: 'Makefile.in'
+
+- name: configure nesC
+  command: './configure'
+  args:
+    chdir: '{{ nesc_src_dir }}'
+    creates: 'Makefile'
+
+- name: make nesC
+  command: make
+  args:
+    chdir: '{{ nesc_src_dir }}'
+    creates: '{{ nesc_src_dir }}/src/nesc-gcc.o'
+
+- name: make install nesC
+  command: make install
+  args:
+    chdir: '{{ nesc_src_dir }}'
+    creates: '/usr/local/bin/nescc'
+
+...

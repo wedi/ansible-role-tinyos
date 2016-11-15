@@ -1,0 +1,51 @@
+---
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Setup TinyOS
+
+- name: install TinyOS requirements
+  apt: >
+    pkg={{ item }} state=present
+    update_cache=yes cache_valid_time=1800
+  with_items: [automake, autoconf, emacs, gperf, bison, flex, graphviz, default-jdk, gcc-msp430]
+
+- name: Checkout TinyOS repo from GitHub
+  git:
+    repo: 'https://github.com/tinyos/tinyos-main.git'
+    dest: '{{ tinyos_src_dir }}'
+    depth: 1
+
+- name: Bootstrap TinyOS Tools
+  command: './Bootstrap'
+  args:
+    chdir: '{{ tinyos_src_dir }}/tools'
+    creates: 'Makefile.in'
+
+- name: configure TinyOS Tools
+  command: './configure'
+  args:
+    chdir: '{{ tinyos_src_dir }}/tools'
+    creates: 'Makefile'
+
+- name: make TinyOS Tools
+  command: make
+  args:
+    chdir: '{{ tinyos_src_dir }}/tools'
+    creates: '{{ tinyos_src_dir }}/tools/tinyos/java/tinyos.jar'
+
+- name: make install TinyOS Tools
+  command: make install
+  args:
+    chdir: '{{ tinyos_src_dir }}/tools'
+    creates: '/usr/local/bin/motelist'
+
+- name: Export TinyOS environment variables
+  template:
+    src: 'tinyos.sh.j2'
+    dest: '/etc/profile.d/tinyos.sh'
+    force: yes
+    group: root
+    owner: root
+    mode: 0644
+
+...

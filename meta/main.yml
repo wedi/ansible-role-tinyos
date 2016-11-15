@@ -1,0 +1,32 @@
+galaxy_info:
+  author: Dirk Weise
+  description: Install the TinyOS (https://github.com/tinyos/) development tools.
+
+  license: MIT
+
+  min_ansible_version: 2.2
+
+  github_branch: master
+
+  platforms:
+  - name: Ubuntu
+    versions:
+  #  - wily
+    - xenial
+  #- name: Debian
+  #  versions:
+  #  - sid
+  #  - squeeze
+  #  - stretch
+  #  - wheezy
+
+  categories:
+  - development
+
+  galaxy_tags:
+    - tinyos
+    - nesc
+    - telosb
+    - wsn
+
+dependencies: []
