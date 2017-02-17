@@ -46,7 +46,7 @@
 
 - name: Install TinyOS JNI libraries
   command: tos-install-jni
-  creates: {{ tos_java_jni_path.stdout }}/libtoscomm.so
+  creates: '{{ tos_java_jni_path.stdout }}/libtoscomm.so'
 
 - name: Export TinyOS environment variables
   template:
