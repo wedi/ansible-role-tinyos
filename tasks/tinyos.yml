@@ -42,7 +42,7 @@
 - name: Locate jni path
   command: tos-locate-jre --jni
   register: tos_java_jni_path
-  changed: no
+  changed_when: False
 
 - name: Install TinyOS JNI libraries
   command: tos-install-jni
